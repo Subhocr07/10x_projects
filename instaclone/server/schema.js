@@ -1,11 +1,14 @@
 const mongoose=require("mongoose");
 
 const postSchema= new mongoose.Schema({
-    name:String,
+    author:String,
     location:String,
     likes:String,
     description:String,
-    postImg:String,
+    image:{
+        type:String,
+        default:"no photo"
+    },
     date:{ type: Date, default: Date.now },
 });
 

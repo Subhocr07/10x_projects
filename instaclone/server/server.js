@@ -1,10 +1,18 @@
 const express=require("express");
 const mongoose = require("mongoose");
 const postModel = require ("./schema")
-const port=8080;
+const cors =require ("cors");
+// const bodyParser=require("body-parser")
+const port=process.env.PORT || 8080;
+
+
 
 
 const app=express();
+
+app.use(cors());
+app.use(express.json({limit:"50mb"}));
+app.use(express.urlencoded({ limit:'50mb',extended:false}));
 //server
 app.listen(port,(err)=>{
     if(!err){
@@ -14,11 +22,14 @@ app.listen(port,(err)=>{
     }
 });
 //body parser  middleware
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));//false means not passing object 
+
+//false means not passing object 
+
+// app.use(bodyParser.json({ limit: '50mb' }));
+// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 //connect to DB
-mongoose.connect("mongodb://localhost/instaclone",(data)=>{
+mongoose.connect("mongodb+srv://InstaCluster:Subho2022@instaclauster.xpboj.mongodb.net/?retryWrites=true&w=majority",(data)=>{
     console.log("succesfully connected");
 },(err)=>{
     console.log(err)
@@ -28,18 +39,28 @@ mongoose.connect("mongodb://localhost/instaclone",(data)=>{
 app.get("/",(req,res)=>{
     res.send("instaclone application")
 });
-
+//save to db
 app.post("/createpost",(req,res)=>{
+    console.log(req.body)
     postModel.create({
-        name:req.body.name,
+        author:req.body.author,
         location:req.body.location,
-        likes:req.body.likes,
         description:req.body.description,
-        postImg:req.body.postImg,
+        image:req.body.image,
         date:req.body.date,
     }).then(()=>{
-        res.status(200).send("Post upload succesfully")
+        res.status(200).send("Post uploaded succesfully")
     }).catch((err)=>{
         res.status(400).send(err)
     });
+});
+
+//data get from db
+app.get("/postall",(req,res)=>{
+    postModel.find()
+        .then((posts)=>{
+            res.status(200).send({posts})
+        }).catch((err)=>{
+            console.log(err)
+        })
 });
