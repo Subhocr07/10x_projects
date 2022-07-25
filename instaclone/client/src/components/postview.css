@@ -1,14 +1,14 @@
-.container{
+.postview_container{
     padding: 0.5rem;
     border: 0;
     margin: 0;
 }
 
-.nav{
+.postview_nav{
     display: flex;
     justify-content: space-between;
 }
-.post_container{
+.postview_post_container{
     padding: 0;
     margin: 0;
     background-color: aqua;

@@ -1,0 +1,23 @@
+.upload_container{
+    background-color: aqua;
+    border: 1px solid black;
+    /* background-color: aqua; */
+    border: 2px solid black;
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    /* top: -9px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#upload_container{
+    padding: 10px;
+}
+.upload_btn{
+    font-size: x-large;
+    font-weight: 700;
+    color: blue;
+    background-color: aqua;
+    border: 3px solid green;
+}

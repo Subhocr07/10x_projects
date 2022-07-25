@@ -22,15 +22,16 @@ const Postview = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="postview_container">
         <header>
-          <div className="nav">
+          <div className="postview_nav">
               <img src={instaclonelogo} alt="logo" />
               <img src="" alt="name" />
               <Link to="/createpost" target='__blank' ><img src="" alt="camera"/></Link>
           </div>
           <hr />
-          <div className="post_container">
+          
+          <div className="postview_post_container">
               <div className="user_details">
                 <h5>Name</h5>
                 <h5>Location</h5>

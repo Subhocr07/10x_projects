@@ -7,13 +7,13 @@ const Landing = () => {
   
 
   return (
-    <div className='container'>
-      <div className="img_container">
-        <img src={Landing_img} alt="Landing_img"/>
+    <div className='landing_container'>
+      <div className="landing_img_container">
+        <img className='landing_img' src={Landing_img} alt="Landing_img"/>
       </div>
-      <div className="button_conatiner">
-        <h1>10x Team 04</h1>
-        <Link to='/postview' target="__blank" ><button >Enter</button></Link>
+      <div className="landing_button_conatiner">
+        <h1 className="heading" >10x Team 04</h1>
+        <Link to='/postview' target="__blank" ><button className='home_button' >Enter</button></Link>
       </div>
       
     </div>

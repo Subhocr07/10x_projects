@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {useState} from "react";
+import "./uploadpost.css";
 
 const Createpost = () => {
   const [userInput,setUserInput]=useState({
@@ -49,33 +50,33 @@ const Createpost = () => {
   }
 
   return (
-    <div className='conatiner'>
+    <div className='upload_container'>
       <form method="POST" > 
-          <div>
-                <div className="file_conatiner">
-                    <input type='file' id="image" name="image" onChange={handleOnchange} /> 
+          <div id='upload_container'>
+                <div className="upload_file_container">
+                    <input className='file_input' type='file' id="image" name="image" onChange={handleOnchange} /> 
                 </div>
 
-                <div className="information_container">
-                  <input type="text" autoComplete="off" name="author"  value={userInput.author} 
+                <div className="upload_information_container">
+                  <input className='file_input' type="text" autoComplete="off" name="author"  value={userInput.author} 
                   onChange={handleOnchange}
                   placeholder="Author"
                   id="author" />
-                  <input type="text" autoComplete="off" name="location"  value={userInput.location}
+                  <input className='file_input' type="text" autoComplete="off" name="location"  value={userInput.location}
                   placeholder="Location"
                   onChange={handleOnchange}
                   id="location" />
                 </div>
 
                 <div className="description_conatiner">
-                  <input type="text" autoComplete="off" name="description"  value={userInput.description}
+                  <input className='file_input' type="text" autoComplete="off" name="description"  value={userInput.description}
                   placeholder="Description"
                   onChange={handleOnchange}
                   id="description" />
                 </div>
           </div>
           <div className="btn_container">
-              <button type="submit" onClick={handleUpload}>Post</button>
+              <button className='upload_btn' type="submit" onClick={handleUpload}>Post</button>
           </div>
       </form>
     </div>
