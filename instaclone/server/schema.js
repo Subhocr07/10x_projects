@@ -5,9 +5,10 @@ const postSchema= new mongoose.Schema({
     location:String,
     likes:String,
     description:String,
+    name:String,
     image:{
-        type:String,
-        default:"no photo"
+        contentType:String,
+        data:Buffer
     },
     date:{ type: Date, default: Date.now },
 });

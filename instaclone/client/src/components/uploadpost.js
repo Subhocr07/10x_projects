@@ -2,7 +2,10 @@ import axios from 'axios';
 import {useState} from "react";
 import "./uploadpost.css";
 
+import { useNavigate } from 'react-router-dom';
+
 const Createpost = () => {
+  let navigate=useNavigate();
   const [userInput,setUserInput]=useState({
     image:"",
     author:"",
@@ -10,35 +13,36 @@ const Createpost = () => {
     description:""
   });
 
-  const fileTobase64 = (file)=> {
-    return new Promise((resolve, reject)=> {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = ()=> {
-        resolve(reader.result)
-      }
-      reader.onerror = (err)=> {
-        reject(err);
-      }
+  // const fileTobase64 = (file)=> {
+  //   return new Promise((resolve, reject)=> {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = ()=> {
+  //       resolve(reader.result)
+  //     }
+  //     reader.onerror = (err)=> {
+  //       reject(err);
+  //     }
 
-    })
-  }
+  //   })
+  // }
 
-  const handleUpload = async (e)=> {
-    // e.preventDefault();
-    const {author,location,description,image}=userInput;
-    const base64Path = await fileTobase64(e.target.files[0]);
-    console.log(e.target.files[0])
-    axios.post("http://localhost:8080/createpost", 
-    JSON.stringify(
-    { 
-      image: base64Path,
-      author,
-      location,
-      description
-    }));
-    console.log(base64Path);
-  }
+  // const handleUpload = async (e)=> {
+  //   // e.preventDefault();
+  //   const {author,location,description,image}=userInput;
+  //   const base64Path = await fileTobase64(e.target.files[0]);
+  //   console.log(e.target.files[0])
+  //   axios.post("http://localhost:8080/createpost", 
+  //   JSON.stringify(
+  //   { 
+  //     image: base64Path,
+  //     author,
+  //     location,
+  //     description
+  //   }));
+  //   console.log(base64Path);
+  //   navigate("/postview")
+  // }
 
 
   const handleOnchange=(e)=>{
@@ -54,7 +58,7 @@ const Createpost = () => {
       <form method="POST" > 
           <div id='upload_container'>
                 <div className="upload_file_container">
-                    <input className='file_input' type='file' id="image" name="image" onChange={handleOnchange} /> 
+                    <input className='file_input' type='file' id="image" name="file" onChange={handleOnchange} /> 
                 </div>
 
                 <div className="upload_information_container">

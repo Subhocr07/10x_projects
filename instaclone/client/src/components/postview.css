@@ -7,6 +7,7 @@
 .Navbar{
     display: flex;
     justify-content: space-between;
+    border-bottom: 2px solid;
 }
 .postview_post_container{
     padding: 0;
@@ -15,6 +16,8 @@
     width: fit-content;
     padding: 4rem;
     border: 1px solid green;
+    margin: 8rem;
+    margin-left: 20rem;
 }
 .date{
     font-size: small;
@@ -28,4 +31,8 @@
 .post_img{
     width: fit-content;
     border: 1px solid yellowgreen;
+}
+a#createpost_link_img {
+    font-size: 3rem;
+    padding-right: 1rem;
 }

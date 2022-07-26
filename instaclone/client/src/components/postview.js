@@ -34,7 +34,7 @@ const Postview = () => {
                   <img src={instaclonelogo} alt="name" />
               </div>
               <div className='postview_camera'>
-                  <Link to="/createpost" target='__blank' ><AiFillCamera/></Link>
+                  <Link to="/createpost" target='__blank' id='createpost_link_img' ><AiFillCamera/></Link>
               </div>
           </div>
 
@@ -64,6 +64,9 @@ const Postview = () => {
                               <div className="date_icon">
                                 <a href="#r"><BsHeart/></a>
                                 <a href="#share"><FiSend/></a>
+                              </div>
+                              <div className='postview_description'>
+                                  <h1>{user.description}</h1>
                               </div>
                               <div className="date">
                                   <h1>{user.date}</h1>
