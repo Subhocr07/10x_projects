@@ -12,8 +12,8 @@ import {FiSend} from "react-icons/fi"
 const Postview = () => {
   const [userData, setUserData]=useState([]);
   useEffect(()=>{
-        fetch('http://localhsot:8080/postall').then((data)=>{
-            console.log(data)
+        fetch('http://localhost:8080/postall').then((data)=>{
+            // console.log(data)
             return (data.json());
         }).then((userdata)=>{
             setUserData(userdata);
@@ -40,27 +40,44 @@ const Postview = () => {
 
           <hr />
           
-          <div className="postview_post_container">
-              <div className='first_row'>
-                    <div className="user_details">
-                      <h5>Name</h5>
-                      <h5>Location</h5>
-                    </div>
-                    <div className="three_dot">
-                      <a href="#t"><BsThreeDots/></a>
-                    </div>
-              </div>
-              <div className="post_img">
-                <img src={fst_post} alt="post_img" />
-              </div>
-              <div className="date_icon">
-                <a href="#r"><BsHeart/></a>
-                <a href="#share"><FiSend/></a>
-                <div className="date">
-                  <h1>Date</h1>
-              </div>
+          <div>
+                {
+                    userData.map((user,i)=>{
+
+                        return(
+                        
+                          <div className="postview_post_container" key={i}>
+                              <div className='first_row'>
+                                  <div className="user_details">
+                                    <h5>{user.author}</h5>
+                                    <h5>{user.location}</h5>
+                                  </div>
+                                  <div className="three_dot">
+                                    <a href="#t"><BsThreeDots/></a>
+                                  </div>
+                              </div>
+
+                              <div className="post_img">
+                                <img src={fst_post} alt="post_img" />
+                              </div>
+
+                              <div className="date_icon">
+                                <a href="#r"><BsHeart/></a>
+                                <a href="#share"><FiSend/></a>
+                              </div>
+                              <div className="date">
+                                  <h1>{user.date}</h1>
+                              </div>
+                          </div>
+                        );
+
+
+                    })
+
+                };
+
           </div>
-          </div>
+          
         </header>
       </div>
     </div>

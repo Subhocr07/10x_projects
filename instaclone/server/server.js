@@ -59,7 +59,8 @@ app.post("/createpost",(req,res)=>{
 app.get("/postall",(req,res)=>{
     postModel.find()
         .then((posts)=>{
-            res.status(200).send({posts})
+            // console.log({posts})
+            res.status(200).send(posts)
         }).catch((err)=>{
             console.log(err)
         })
