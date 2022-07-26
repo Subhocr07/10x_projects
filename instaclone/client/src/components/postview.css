@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-.postview_nav{
+.Navbar{
     display: flex;
     justify-content: space-between;
 }
@@ -12,4 +12,20 @@
     padding: 0;
     margin: 0;
     background-color: aqua;
+    width: fit-content;
+    padding: 4rem;
+    border: 1px solid green;
+}
+.date{
+    font-size: small;
+}
+
+.first_row{
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+.post_img{
+    width: fit-content;
+    border: 1px solid yellowgreen;
 }
