@@ -15,7 +15,7 @@ const Postview = () => {
   useEffect(()=>{//to get image data for now
     axios.get("http://localhost:8080/postall").then((imageData)=>{
           console.log(imageData.data.images)
-          setUserData(imageData.data.images)
+          setUserData(imageData.data.imageData)
     })
   },[])
 
@@ -46,6 +46,7 @@ const Postview = () => {
 
                         return(
                           <img src={user.image} alt="avatar"key={i} ></img>
+                          
                         
                           // <div className="postview_post_container" key={i}>
                           //     <div className='first_row'>

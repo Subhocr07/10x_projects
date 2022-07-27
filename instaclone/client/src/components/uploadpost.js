@@ -11,12 +11,17 @@ const Createpost = () => {
   });
   const[image,setImage]=useState('');
 
-  const handleImageUpload= async (e)=>{
+  const handleImageUpload=  (e)=>{
     //base64Path is the converted string of our file
-    const base64Path= await fileToBase64(e.target.files[0])//calling fileToBase64 fn with our file and we r waiting for this fn to execute first
-    axios.post("http://localhost:8080/createpost",{image:base64Path});
+     fileToBase64(e.target.files[0]).then((base64Path)=>{
       console.log(base64Path)
       setImage(base64Path)
+     })
+
+     //calling fileToBase64 fn with our file and we r waiting for this fn to execute first
+    
+    //  console.log(base64Path)
+      // setImage(base64Path)
   }
 
   const fileToBase64=(file)=>{//converting our file to base64 and passing file as param
@@ -34,7 +39,8 @@ const Createpost = () => {
 
   const handleUpload=(e)=>{
     // const image= fileToBase64(e.target.files[0]);
-  const[author,location,description]=user;
+    // debugger
+  const{author,location,description}=user;
     console.log(image)
     axios.post("http://localhost:8080/createpost",{
     image,
@@ -87,7 +93,7 @@ const Createpost = () => {
                   id="description" />
                 </div>
                 <div className="btn_container">
-                    <button className='upload_btn' type="submit" onClick={handleUpload}>Post</button>
+                    <button className='upload_btn' type="button" onClick={handleUpload}>Post</button>
                 </div>
         </div>
       </form>
