@@ -13,7 +13,7 @@ const app=express();
 
 app.use(cors());
 app.use(express.json({limit:"50mb"}));
-app.use(express.urlencoded({ limit:'50mb',extended:false}));
+app.use(express.urlencoded({ limit:'50mb',extended:true}));
 //server
 app.listen(port,(err)=>{
     if(!err){
@@ -40,29 +40,26 @@ mongoose.connect("mongodb+srv://InstaCluster:Subho2022@instaclauster.xpboj.mongo
 app.get("/",(req,res)=>{
     res.send("instaclone application")
 });
+
+//storage
+const Storage=multer.diskStorage({
+    destination:'uploads',//where to upload
+    filename:(req,file,cb)=>{
+        cb(null,file.originalname)
+    }
+});
+const upload=multer({
+    storage:Storage,
+}).single('file');
 //save to db
-app.post("/createpost",(req,res)=>{
-    upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }else{
-            postModel.create({
-                author:req.body.author,
-                location:req.body.location,
-                description:req.body.description,
-                name:req.body.name,
-                image:{
-                   
-                    contentType:'image/png',
-                    data:req.body.filename,
-                },
-                date:req.body.date,
-            }).then(()=>{
-                res.send('succesfully uploaded image')
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
+app.post("/createpost",upload,(req,res)=>{
+    postModel.create({
+        author:req.body.author,
+        location:req.body.location,
+        description:req.body.description,
+        image:req.body.image
+    }).then((data)=>{
+            res.status(200).send(data)
     })
 
     // console.log(req.body)
@@ -82,21 +79,10 @@ app.post("/createpost",(req,res)=>{
 //data get from db
 app.get("/postall",(req,res)=>{
     postModel.find()
-        .then((posts)=>{
+        .then((imageData)=>{
             // console.log({posts})
-            res.status(200).send(posts)
+            res.status(200).send({imageData})
         }).catch((err)=>{
             console.log(err)
         })
 });
-
-//storage
-const Storage=multer.diskStorage({
-    destination:'uploads',//where to upload
-    filename:(req,file,cb)=>{
-        cb(null,file.originalname)
-    }
-});
-const upload=multer({
-    storage:Storage,
-}).single('image');

@@ -5,11 +5,11 @@ const postSchema= new mongoose.Schema({
     location:String,
     likes:String,
     description:String,
-    name:String,
-    image:{
-        contentType:String,
-        data:Buffer
-    },
+    image:String,
+    // image:{
+    //     contentType:String,
+    //     data:Buffer
+    // },
     date:{ type: Date, default: Date.now },
 });
 
