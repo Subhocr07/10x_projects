@@ -81,7 +81,7 @@ app.get("/postall",(req,res)=>{
     postModel.find()
         .then((imageData)=>{
             // console.log({posts})
-            res.status(200).send({imageData})
+            res.status(200).send({images:imageData})
         }).catch((err)=>{
             console.log(err)
         })

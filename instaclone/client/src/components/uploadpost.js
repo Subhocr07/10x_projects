@@ -9,17 +9,14 @@ const Createpost = () => {
   const[user,setUser]=useState({
     author:'',location:'',description:'',
   });
+  const[image,setImage]=useState('');
 
-  const handleUpload= async (e)=>{
+  const handleImageUpload= async (e)=>{
     //base64Path is the converted string of our file
-    const[author,location,description]=user;
     const base64Path= await fileToBase64(e.target.files[0])//calling fileToBase64 fn with our file and we r waiting for this fn to execute first
-    axios.post("http://localhost:8080/createpost",{image:base64Path,
-    author,
-    location,
-    description
-  });
+    axios.post("http://localhost:8080/createpost",{image:base64Path});
       console.log(base64Path)
+      setImage(base64Path)
   }
 
   const fileToBase64=(file)=>{//converting our file to base64 and passing file as param
@@ -35,17 +32,22 @@ const Createpost = () => {
     })
 }
 
-  // const handleUpload=(e)=>{
-  //   // const image= fileToBase64(e.target.files[0]);
-    
-  //   axios.post("http://localhost:8080/createpost",{
-      
-  //   });
-  //   console.log({user})
-  // }
+  const handleUpload=(e)=>{
+    // const image= fileToBase64(e.target.files[0]);
+  const[author,location,description]=user;
+    console.log(image)
+    axios.post("http://localhost:8080/createpost",{
+    image,
+    author,
+    location,
+    description
+    });
+
+    console.log({user})
+  }
 
   
-//fn to conver file into base64 strring
+//fn to convert file into base64 strring
   
   let name,value
   const handleOnchange=(e)=>{
@@ -64,7 +66,7 @@ const Createpost = () => {
       <form method="POST"  > 
           <div id='upload_container'>
                 <div className="upload_file_container">
-                    <input className='file_input' type='file' id="image" name="image" onChange={(e)=>{handleUpload(e)}} /> 
+                    <input className='file_input' type='file' id="image" name="image" onChange={(e)=>{handleImageUpload(e)}} /> 
                 </div>
 
                 <div className="upload_information_container">
