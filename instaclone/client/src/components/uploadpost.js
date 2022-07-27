@@ -1,29 +1,24 @@
 import axios from 'axios';
 import { useState } from 'react';
-// import {useState} from "react";
 import "./uploadpost.css";
-
-// import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+/////////////////////////////////////////////////////////////////////////
 const Createpost = () => {
   const[user,setUser]=useState({
     author:'',location:'',description:'',
   });
   const[image,setImage]=useState('');
 
+  const navigate=useNavigate();
+//selecting the file and seting into state
   const handleImageUpload=  (e)=>{
     //base64Path is the converted string of our file
      fileToBase64(e.target.files[0]).then((base64Path)=>{
-      console.log(base64Path)
+      // console.log(base64Path)
       setImage(base64Path)
-     })
-
-     //calling fileToBase64 fn with our file and we r waiting for this fn to execute first
-    
-    //  console.log(base64Path)
-      // setImage(base64Path)
+     });
   }
-
+////function to convert file into base64///////////////////////////////////////
   const fileToBase64=(file)=>{//converting our file to base64 and passing file as param
     return new Promise((resolve,reject)=>{
       const reader=new FileReader();//it is file reading method like fs
@@ -36,24 +31,21 @@ const Createpost = () => {
       }
     })
 }
-
+///////////it will upload after clicking post btn//////////////////////////
   const handleUpload=(e)=>{
     // const image= fileToBase64(e.target.files[0]);
     // debugger
   const{author,location,description}=user;
-    console.log(image)
     axios.post("http://localhost:8080/createpost",{
     image,
     author,
     location,
     description
     });
-
-    console.log({user})
+    navigate("/postview")
+    // console.log({user})
   }
-
-  
-//fn to convert file into base64 strring
+/////////////it will update our state after evry change on web//////////////////////
   
   let name,value
   const handleOnchange=(e)=>{
@@ -66,7 +58,7 @@ const Createpost = () => {
 
 
   
-
+////////post UI///////////////////////////////////////////////////////////////////
   return (
     <div className='upload_container'>
       <form method="POST"  > 

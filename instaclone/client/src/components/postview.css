@@ -8,15 +8,19 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid;
+    
+}
+.user_details {
+    font-size: 23px;
 }
 .postview_post_container{
     padding: 0;
     margin: 0;
     background-color: aqua;
     width: fit-content;
-    padding: 4rem;
+    padding: 1rem;
     border: 1px solid green;
-    margin: 8rem;
+    margin: 1rem;
     margin-left: 20rem;
 }
 .date{
@@ -25,14 +29,30 @@
 
 .first_row{
     display: flex;
-    justify-content: space-around;
+    column-gap: 25rem;
     padding: 0;
 }
 .post_img{
     width: fit-content;
     border: 1px solid yellowgreen;
 }
+img#post_img {
+    width: 30rem;
+    height: 28rem;
+}
 a#createpost_link_img {
     font-size: 3rem;
     padding-right: 1rem;
+}
+.date_icon {
+    display: flex;
+    column-gap: 2rem;
+    padding: 7px;
+    font-size: 2rem;
+}
+p#description {
+    font-size: xx-large;
+}
+p#date {
+    font-size: 14px;
 }
