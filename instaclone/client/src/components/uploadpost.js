@@ -36,7 +36,7 @@ const Createpost = () => {
     // const image= fileToBase64(e.target.files[0]);
     // debugger
   const{author,location,description}=user;
-    axios.post("http://localhost:8080/createpost",{
+    axios.post("https://instaclone-10x-server-1.herokuapp.com/createpost",{
     image,
     author,
     location,

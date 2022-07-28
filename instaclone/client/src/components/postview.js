@@ -15,7 +15,7 @@ const Postview = () => {
   const [userData, setUserData]=useState([]);
   /////////////////fetch Data from Backend/////////////////////////////
   useEffect(()=>{//to get image data for now
-    axios.get("http://localhost:8080/postall").then((imageData)=>{
+    axios.get("https://instaclone-10x-server-1.herokuapp.com/postall").then((imageData)=>{
           setUserData(imageData.data.imageData)
     });
   },[])
