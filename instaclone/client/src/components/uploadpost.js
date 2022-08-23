@@ -10,7 +10,7 @@ const Createpost = () => {
   const[image,setImage]=useState('');
 
   const navigate=useNavigate();
-//selecting the file and seting into state
+//selecting the file and setting into state
   const handleImageUpload=  (e)=>{
     //base64Path is the converted string of our file
      fileToBase64(e.target.files[0]).then((base64Path)=>{
