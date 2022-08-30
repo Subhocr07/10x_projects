@@ -37,13 +37,13 @@ const Todo = () => {
                     setIsEdit(null)
        }else{
         const allInputData={id:new Date().getTime().toString(),name:task}
-        setDisplay([...display,allInputData])
+        setDisplay([...task,allInputData])
         setTask("")
        }
       
     }
     const editItem=(id)=>{
-        const newEditedItem=display.find((item)=>{
+        const newEditedItem=task.find((item)=>{
             return item.id===id;
 
         });
